@@ -3,7 +3,6 @@ This is a readme file for COSC 213 Final Project
 
 ## Project - Content Management System
 Kelowna Go-To
--> Transportation
 -> Local food sports
 -> Local news and updates;
 -> Hikes and go-to places
@@ -16,7 +15,6 @@ This is content management website like reddit, where people post recent events 
 - Categories page
     - Local News/Rave
     - Local Food Spots
-    - Local Transportation
     - Local Hikes and places
 - Contact Us page
 
