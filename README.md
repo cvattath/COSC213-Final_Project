@@ -1,5 +1,4 @@
 # COSC213-Final_Project
-<<<<<<< Updated upstream
 This is a readme file for COSC 213 Final Project
 
 ## Project - Content Management System
@@ -22,6 +21,4 @@ This is content management website like reddit, where people post recent events 
 
  for filtered post that has most reactions or recent post.
 
-=======
 This is a readme file for COSC 213 Final Projects
->>>>>>> Stashed changes
