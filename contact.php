@@ -19,7 +19,7 @@
 </div>
 
 <div id="main">
-    <h1>GOKelowna</h1>
+    <h1>Prime-OKG</h1>
     <div id="main-block">
 <div id="post-block">
     <h1>Post Below</h1><br>
