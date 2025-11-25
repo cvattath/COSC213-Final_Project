@@ -9,11 +9,12 @@ if ($conn->connect_error) {
 
 $message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $uname   = filter_var($_POST['u_name'], FILTER_SANITIZE_STRING);
-    $password = filter_var($_POST['pass'], FILTER_SANITIZE_STRING);
-    $age = filter_var($_POST['age'], FILTER_SANITIZE_NUMBER_INT);
-    $name = filter_var(['name'], FILTER_SANITIZE_STRING);
+   $uname    = $_POST['u_name'] ?? '';
+    $password = $_POST['pass'] ?? '';
+    $age      = (int)($_POST['age'] ?? 0);
+    $name     = $_POST['name'] ?? '';
 
+    $password = password_hash($password, PASSWORD_DEFAULT);
 
 $sql = "INSERT INTO users(u_name,pass, age, name) VALUES ('$uname','$password', '$age', '$name');";
 
@@ -23,4 +24,11 @@ if ($conn->query($sql) === TRUE) {
         $message = "Error: " . $conn->error;
     }
 };
+
+?>
+
+<!DOCTYPE html>
+<html>
+
+
 
