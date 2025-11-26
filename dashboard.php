@@ -3,13 +3,14 @@ session_start();
 
 
 $_SESSION['username'] = 'admin';  
-$_POST['username'] = 'admin';     
-$_POST['password'] = '12345';      
+// $_POST['username'] = 'admin';     
+// $_POST['password'] = '12345';
+$_SESSION['user_id'] = 1;      
 
 
-if ($_POST['username'] !== 'admin' || $_POST['password'] !== '12345') {
-    die("Wrong credentials. <a href='home.php'>Back</a>");
-}
+// if ($_POST['username'] !== 'admin' || $_POST['password'] !== '12345') {
+//     die("Wrong credentials. <a href='home.php'>Back</a>");
+// }
 
 $conn = new mysqli("localhost:3307", "root", "", "local_blog"); 
 if ($conn->connect_error) {
@@ -17,11 +18,29 @@ if ($conn->connect_error) {
 }
 
 $message = "";
+$cat_id = 0;
+
+if(isset($_GET['delete'])){
+    $id = (int)$_GET['delete'];
+
+    $img = $conn -> query("SELECT image FROM OKGPOSTS WHERE id = $id") -> fetch_assoc();
+    if($img && $img['image'] && file_exists($img['image'])){
+        unlink($img['image']);
+    }
+
+    $conn -> query("DELETE FROM OKGPOSTS where id = $id");
+    $message = 'Post deleted successfully!';
+    header("Location: dashboard.php");
+    exit;
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title   = filter_var($_POST['title'], FILTER_SANITIZE_STRING);
-    $content = filter_var($_POST['content'], FILTER_SANITIZE_STRING);
-    $author  = $_SESSION['username'];
+    $title   = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
+    $content = filter_var($_POST['content'], FILTER_SANITIZE_SPECIAL_CHARS);
+    $author_id = $_SESSION['user_id'];
+    $cat_id    = (int)($_POST['category'] ?? 0);
+
+    if (!is_dir('uploads')) mkdir('uploads', 0777, true);
 
     $image = "";
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
@@ -29,8 +48,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         move_uploaded_file($_FILES['image']['tmp_name'], $image);
     }
 
-    $sql = "INSERT INTO posts (title, author, content, image) 
-             VALUES ('$title', '$author', '$content', '$image')";
+  
+
+    $sql = "INSERT INTO OKGPOSTS (title, author_id, cat_id, content, image) 
+            VALUES ('$title', '$author_id', '$cat_id', '$content', '$image')";
 
     if ($conn->query($sql) === TRUE) {
         $message = "Post uploaded successfully!";
@@ -41,19 +62,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html>
-<head><title>Create Post</title></head>
-<body style="font-family:Arial; text-align:center; margin-top:100px;">
-    <h1 style="color:#d35400;">Create New Post</h1>
-    <p style="color:green; font-weight:bold;"><?= $message ?></p>
+<head>
+    <title>Create Post</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body class="body-dash">
 
-
-<div style="max-width:700px; margin:50px auto; text-align:center;">
+<div class="container">
     <h1>Create New Post</h1>
-    <h3 style="color:green;"><?= $message ?></h3>
+    <a href="home.php" class="click-home">go to home</a>
+    <?php if ($message) echo "<div class='msg'>$message</div>"; ?>
 
     <form method="post" enctype="multipart/form-data">
-        Title:<br>
-        <input type="text" name="title" required style="width:100%; padding:10px;"><br><br>
+        <strong>Title</strong><br>
+        <input type="text" name="title" required><br>
+
+        Category:<br>
+        <?php
+        $cats = $conn->query("SELECT id, cat_name FROM categories ORDER BY id");
+        while ($cat = $cats->fetch_assoc()) {
+            $checked = ($cat['id'] == 2) ? 'checked' : '';   
+            echo "<label class='cat-section'>
+                    <input type='radio' name='category' value='{$cat['id']}' $checked required>
+                    {$cat['cat_name']}
+                  </label>";
+        }
+        ?><br>
 
         Content:<br>
         <textarea name="content" rows="8" required style="width:100%; padding:10px;"></textarea><br><br>
@@ -61,11 +95,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         Image (optional):<br>
         <input type="file" name="image"><br><br>
 
-        <button type="submit" style="padding:12px 30px; background:#28a745; color:white; border:none;">
+        <button class="sub-btn" type="submit">
             Upload Post
         </button>
     </form>
 
     <br><br>
-    <a href="home.php">← Back to Home</a>
+    
+
+    <h2>Your Posts</h2>
+    <?php
+    $sql = "SELECT p.*, c.cat_name 
+            FROM OKGPOSTS p 
+            JOIN categories c ON p.cat_id = c.id 
+            ORDER BY p.createdAt DESC";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows == 0) {
+        echo "<p>No posts yet. Create your first one above!</p>";
+    } else {
+        while ($post = $result->fetch_assoc()) {
+            echo "<div class='post'>";
+            echo "<h3>" . htmlspecialchars($post['title']) . "</h3>";
+            echo "<small>Posted on: " . $post['createdAt'] . 
+                 " | Category: <span class='cat'>" . htmlspecialchars($post['cat_name']) . "</span></small><br><br>";
+            echo "<p>" . nl2br(htmlspecialchars($post['content'])) . "</p>";
+            if ($post['image']) {
+                echo "<img src='{$post['image']}' alt='Post image'>";
+            }
+            echo "<a href='?delete={$post['id']}' class='delete-btn '
+                        onclick='return confirm(\"Delete this post forever?\");'>
+                        Delete
+                  </a>";
+            echo "</div>";
+        }
+    }
+    ?>
 </div>
+</body>
+</html>
