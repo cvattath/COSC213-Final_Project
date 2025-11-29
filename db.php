@@ -1,7 +1,7 @@
 <?php 
 const DB_HOST = '127.0.0.1';
 const DB_PORT = 3307;
-const DB_NAME = 'post_db';
+const DB_NAME = 'local_blog';
 const DB_USER = 'root';
 const DB_PASS = '';
 
