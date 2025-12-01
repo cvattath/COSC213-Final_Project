@@ -33,6 +33,7 @@ Main Structure of the body
       padding: 8px 20px;
       flex-direction: column;
       display: flex;
+      padding-top:100px;
       gap: 5px;
       min-width: 180px;
       align-items: stretch;
@@ -322,4 +323,35 @@ input, textarea, select, button {
   }
 .delete-btn:hover {
   background:#c82333;
+}
+
+.register-body{
+  font-family: Arial, sans-serif; 
+  background: linear-gradient(135deg, #667eea, #764ba2); 
+  height: 100vh; 
+  display: flex; 
+  align-items: center; 
+  justify-items: center;
+  padding-left: 600px;
+}
+
+.register-box{
+  width: 400px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.register-box input,.register-box button{
+  width:100%; 
+  padding:12px; 
+  margin:10px 0; 
+  border:1px solid #ccc; 
+  border-radius:5px;
+}
+
+.message { 
+  margin:20px 0; 
 }

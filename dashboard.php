@@ -34,11 +34,11 @@ if(isset($_GET['delete'])){
     exit;
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_post'])) {
     $title   = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
     $content = filter_var($_POST['content'], FILTER_SANITIZE_SPECIAL_CHARS);
     $author_id = $_SESSION['user_id'];
-    $cat_id    = (int)($_POST['category'] ?? 0);
+    $cat_id  = $_POST['cat_id'] ?? 1;
 
     if (!is_dir('uploads')) mkdir('uploads', 0777, true);
 
