@@ -1,8 +1,4 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 /*
 Main Structure of the body
 */
@@ -325,14 +321,17 @@ input, textarea, select, button {
   background:#c82333;
 }
 
+<<<<<<< Updated upstream
+=======
 .register-body{
   font-family: Arial, sans-serif; 
   background: linear-gradient(135deg, #667eea, #764ba2); 
   height: 100vh; 
   display: flex; 
   align-items: center; 
-  justify-items: center;
+  justify-content: center;
   padding-left: 600px;
+  width:500px
 }
 
 .register-box{
@@ -355,3 +354,8 @@ input, textarea, select, button {
 .message { 
   margin:20px 0; 
 }
+.login-register{
+  color:black;
+  font-size: 100;
+}
+>>>>>>> Stashed changes
