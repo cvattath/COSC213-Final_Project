@@ -1,55 +1,54 @@
-    <?php
-    session_start();
-        
-    $conn = new mysqli("localhost:3307", "root", "", "local_blog"); 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    $message = "";
+<?php
+session_start();
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $uname    = trim($_POST['u_name'] ?? '');
-        $password = $_POST['pass'] ?? '';
-        $age      = (int)($_POST['age'] ?? 0);
-        $name     = trim($_POST['name'] ?? '');
+$conn = new mysqli("localhost:3307", "root", "", "local_blog"); 
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$message = "";
 
-        if (empty($uname) || empty($name) || $age < 1 || empty($pass)) {
-            $message = "All fields are required!";
-        }else{
-            $check = $conn->prepare("SELECT u_name FROM users WHERE u_name =?");
-            $check->bind_param('s',$uname);
-            $check->execute();
-            $result = $check->get_result();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $uname    = trim($_POST['u_name'] ?? '');
+    $password = $_POST['pass'] ?? '';
+    $age      = (int)($_POST['age'] ?? 0);
+    $name     = trim($_POST['name'] ?? '');
 
-            if($result->num_rows > 0){  
-                $message = "Username already taken!";
-            }else{
-                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    if (empty($uname) || empty($name) || $age < 1 || empty($password)) {
+        $message = "All fields are required!";
+    } else {
+        $check = $conn->prepare("SELECT u_name FROM users WHERE u_name = ?");
+        $check->bind_param('s', $uname);
+        $check->execute();
+        $result = $check->get_result();
 
-                $sql = $conn->prepare("INSERT INTO users(u_name,pass, age, name) VALUES (?,?,?,?);");
-                $sql -> bind_param('ssis',$uname,$hashed_password, $age, $name);
+        if ($result->num_rows > 0) {  
+            $message = "Username already taken!";
+        } else {
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-                if ($sql->execute()) {
-                $message = "User registed successfully!";
-                
-                } else {
+            $sql = $conn->prepare("INSERT INTO users(u_name, pass, age, name) VALUES (?,?,?,?)");
+            $sql->bind_param('ssis', $uname, $hashed_password, $age, $name);
+
+            if ($sql->execute()) {
+                $message = "User registered successfully!";
+            } else {
                 $message = "Error: " . $conn->error;
-                }
-           $sql->close();
+            }
+            $sql->close();
         }
-     $check->close();
+        $check->close();
     }
-    
-    }
-    $conn->close();
-    ?>
+}  
+
+$conn->close(); 
+?>
 
     <!DOCTYPE html>
     <html>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <head>
-            <link rel="stylesheet" href="style.css">
+            <link rel="stylesheet" href="register.css">
         </head>
         <body class="register-body">
             <div class="register-box">
@@ -64,7 +63,7 @@
                     <button type="submit">Register</button>
                 </form>
 
-            <p><br>
+            <p class="login-register">
             Already have an account? <a href="home.php">Login here</a>
         </p>
 
