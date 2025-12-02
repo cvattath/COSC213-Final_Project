@@ -63,7 +63,11 @@ $conn->close();
                     <button type="submit">Register</button>
                 </form>
 
+<<<<<<< Updated upstream
             <p class="login-register">
+=======
+            <p class="login-register"><br>
+>>>>>>> Stashed changes
             Already have an account? <a href="home.php">Login here</a>
         </p>
 
