@@ -4,7 +4,6 @@
 require __DIR__ . '/db.php';
 
 $pdo = get_pdo();
-$posts = $pdo->query("SELECT * FROM local_blog ORDER BY createdAt DESC")->fetchAll();
 
 ?>
 
@@ -20,65 +19,70 @@ $posts = $pdo->query("SELECT * FROM local_blog ORDER BY createdAt DESC")->fetchA
 <body>
 <div id="nav-bar">
     <div id="nav-block">
-    <a href="home.html">HOME</a>
-    <a href="contact.html">CONTACT US</a>
+    <a href="home.php">HOME</a>
+    <a href="contact.php">CONTACT US</a>
 
     </div>
     <div id="login-block">
-        <form method="POST" action="dashboard.php">
+        <form method="POST" action="login.php">
     <input type="text" placeholder="USERNAME" name="username" required/>
     <input type="password" placeholder="PASSWORD" name="password" required/>
     <input type="submit" value="LOGIN">
     </form> 
-    <p class="signup-text">Haven't signed up yet?<a href="register.html"> Click here.</a></p>
+    <p class="signup-text">Haven't signed up yet?<a href="register.php"> Click here.</a></p>
     
     </div>
 </div>
 
 <div id="main">
-    <div id="left-side-block">
-        <p>This is the left side block</p>
-    </div>
     <h1 class="main-title">Prime-OKG</h1>
-    <div id="right-side-block">
-        <p>This is the right side block</p>
-    </div>
 </div>
 
 
 
-    <div id="main-block">
+<div id="main-block">
     <div id="post-block">
     <h1>Recent Posts</h1><br>
-    <div class="post-block-home">
 
-    <div class="post-card">
+<?php
+$posts = $pdo->query("SELECT p.id, p.title, p.content, p.image, p.createdAt, 
+                                     u.u_name AS author_name
+                              FROM okgposts p 
+                              INNER JOIN users u ON u.id = p.author_id 
+                              ORDER BY p.createdAt DESC") ->fetchAll(PDO::FETCH_ASSOC);
+
+    
+  
+?>
+
 <?php if (empty($posts)): ?>
-                <p style="text-align:center; color:#999;">No posts yet — login and be the first!</p>
-            <?php else: ?>
-                <?php foreach ($posts as $post): ?>
-                    <div class="post-card">
-                        <?php if (!empty($post['image'])): ?>
-                            <img src="<?= htmlspecialchars($post['image']) ?>" alt="Post image" style="width:100%; max-height:400px; object-fit:cover; border-radius:12px; margin-bottom:15px;">
-                        <?php endif; ?>
-
-                        <h2><?= htmlspecialchars($post['title']) ?></h2>
-                        <p style="color:#666; font-size:14px;">
-                            <?= htmlspecialchars($post['author']) ?> • 
-                            <?= date('F j, Y \a\t g:i A', strtotime($post['created_at'])) ?>
-                        </p>
-                        <div><?= nl2br(htmlspecialchars($post['content'])) ?></div>
+        <p>No posts yet — login and be the first!</p>
+    <?php else: ?>
+        <div class="post-grid">
+            <?php foreach ($posts as $post): ?>
+                <div class="post-card">
+                    <?php if (!empty($post['image'])): ?>
+                        <img src="<?= htmlspecialchars($post['image']) ?>" alt="Post image" class="post-image">
+                    <?php endif; ?>
+                    <div class="post-content">
+                    <h2><?= htmlspecialchars($post['title']) ?></h2>
+                    <p style="color:#666; font-size:14px;">
+                    
+                    <?= htmlspecialchars($post['author_name']) ?> • 
+                    <?= date('F j, Y \a\t g:i A', strtotime($post['createdAt'])) ?>
+                    </p>
+                    <p>
+                    <?= nl2br(htmlspecialchars($post['content'])) ?>
+                    </p>
                     </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        <p>This is a short description of the third post.</p>
-    </div>
-
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
 </div>
 
 </div>
 
-</div>
 
 <div id="footer">
     <h1>Footer</h1>

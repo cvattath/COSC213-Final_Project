@@ -10,11 +10,9 @@
 
 <div id="nav-bar">
     <div id="nav-block">
-    <a href="home.html">HOME</a>
-    <a href="localnews.html">LOCAL NEWS</a>
-    <a href="localfood.html">LOCAL FOODS</a>
-    <a href="localhikes.html">LOCAL HIKES</a>
-    <a href="contact.html">CONTACT US</a>
+    <a href="home.php">HOME</a>
+
+    <a href="contact.php">CONTACT US</a>
     </div>
 </div>
 

@@ -3,8 +3,8 @@
 Main Structure of the body
 */
 #nav-bar{
-    background-color: rgb(255, 213, 161);
-    height: 130px;
+    background:linear-gradient(black,rgb(46, 35, 35));
+    height: 180px;
     padding: 0 40px;
     display: flex;
     justify-content: space-between;
@@ -26,10 +26,10 @@ Main Structure of the body
 #login-block{
     height: auto;
     min-height: 110px;
-      padding: 8px 20px;
+      padding: 8px 10px;
       flex-direction: column;
       display: flex;
-      padding-top:100px;
+      padding-top:10px;
       gap: 5px;
       min-width: 180px;
       align-items: stretch;
@@ -85,11 +85,10 @@ Main Structure of the body
   text-decoration: underline;
 }
 #main{
-    background-color: beige;
+    background:linear-gradient(rgb(37, 29, 29),black);
     flex:1;
-    padding:30px 30px;
+    padding:10px 10px;
     text-align: left;
-    width:100%;
     flex-wrap: wrap;
     justify-content: center;
     align-items:center;
@@ -98,20 +97,20 @@ Main Structure of the body
 }
 
 #main-block {
-    padding: 0 40px 40px;
+   
     display: flex;
     justify-content: center;
 }
 
 #post-block {
-    background-color: rgb(189, 255, 255);
+    background: linear-gradient(black,red);
     width: 100%;
-    padding: 60px;
-    border-radius: 10px;
+    padding: 40px;
+
 }
 #post-block h1 {
     margin-bottom: 10px;
-    color: #333;
+    color: #ffffff;
 }
 
 /*
@@ -126,18 +125,33 @@ Home post block styling
     background-color: white;
 }
 
-
-.post-card {
-    background-color: rgb(245, 245, 245);
+.posts-grid {
+    display: grid;
+    gap: 40px;
     padding: 20px;
-    border-radius: 12px;
-    width:100%;
-    min-width: 950px;
-    box-shadow: 0px 2px 6px rgba(213, 110, 110, 0.15);
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
+.post-card {
+    display: grid;
+    grid-template-columns: 350px 1fr; 
+    gap: 24px;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+
 .post-card h2 {
-    margin-bottom: 10px;
+    
     font-family: Arial, sans-serif;
 }
 
@@ -146,6 +160,19 @@ Home post block styling
     color: #444;
 }
 
+.post-card .post-image {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+   
+}
+
+.post-card .post-content {
+    padding: 0 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 
 .main-title{
@@ -154,29 +181,13 @@ Home post block styling
   
 }
 
-#left-side-block,
-#right-side-block {
-    background-color: rgb(237, 253, 224);
-    width: 250px;
-    min-height: 200px;
-    display: flex;
-    align-items: center;
-    border-radius: 10px;
-    padding: 40px;
-    flex-shrink: 0;
-}
 
-#left-side-block{
-  padding-left: 40px;
-}
-#right-side-block{
-  padding-right: 40px;
-}   
+ 
         
 
 
 #footer{
-    background-color: rgb(255, 193, 193);
+    background:linear-gradient(red,rgb(0, 0, 0));
     color:wheat;
     width:100%;
     height:200px;
@@ -321,8 +332,6 @@ input, textarea, select, button {
   background:#c82333;
 }
 
-<<<<<<< Updated upstream
-=======
 .register-body{
   font-family: Arial, sans-serif; 
   background: linear-gradient(135deg, #667eea, #764ba2); 
@@ -331,7 +340,7 @@ input, textarea, select, button {
   align-items: center; 
   justify-content: center;
   padding-left: 600px;
-  width:500px
+  width:500px;
 }
 
 .register-box{
@@ -358,4 +367,3 @@ input, textarea, select, button {
   color:black;
   font-size: 100;
 }
->>>>>>> Stashed changes

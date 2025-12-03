@@ -1,16 +1,13 @@
 <?php
 session_start();
 
+if(!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true){
+    header("Location: home.php");
+    exit;
+}
 
-$_SESSION['username'] = 'admin';  
-// $_POST['username'] = 'admin';     
-// $_POST['password'] = '12345';
-$_SESSION['user_id'] = 1;      
-
-
-// if ($_POST['username'] !== 'admin' || $_POST['password'] !== '12345') {
-//     die("Wrong credentials. <a href='home.php'>Back</a>");
-// }
+$user_id   = $_SESSION['user_id'];
+$username  = $_SESSION['username'];
 
 $conn = new mysqli("localhost:3307", "root", "", "local_blog"); 
 if ($conn->connect_error) {
@@ -22,23 +19,24 @@ $cat_id = 0;
 
 if(isset($_GET['delete'])){
     $id = (int)$_GET['delete'];
+    $user_id = (int)$_SESSION['user_id'];
 
-    $img = $conn -> query("SELECT image FROM OKGPOSTS WHERE id = $id") -> fetch_assoc();
+    $img = $conn -> query("SELECT image FROM OKGPOSTS WHERE id  = $id AND author_id = $user_id") -> fetch_assoc();
     if($img && $img['image'] && file_exists($img['image'])){
         unlink($img['image']);
     }
 
-    $conn -> query("DELETE FROM OKGPOSTS where id = $id");
+    $conn -> query("DELETE FROM OKGPOSTS where id = $id AND author_id = $user_id");
     $message = 'Post deleted successfully!';
     header("Location: dashboard.php");
     exit;
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_post'])) {
-    $title   = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
-    $content = filter_var($_POST['content'], FILTER_SANITIZE_SPECIAL_CHARS);
-    $author_id = $_SESSION['user_id'];
-    $cat_id  = $_POST['cat_id'] ?? 1;
+    $title   = $conn->real_escape_string(trim($_POST['title']));
+    $content = $conn->real_escape_string(trim($_POST['content']));
+    $author_id =(int) $_SESSION['user_id'];
+    $cat_id  =(int) $_POST['cat_id'] ?? 1;
 
     if (!is_dir('uploads')) mkdir('uploads', 0777, true);
 
@@ -83,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_post'])) {
         while ($cat = $cats->fetch_assoc()) {
             $checked = ($cat['id'] == 2) ? 'checked' : '';   
             echo "<label class='cat-section'>
-                    <input type='radio' name='category' value='{$cat['id']}' $checked required>
+                    <input type='radio' name='cat_id' value='{$cat['id']}' $checked required>
                     {$cat['cat_name']}
                   </label>";
         }
@@ -94,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_post'])) {
 
         Image (optional):<br>
         <input type="file" name="image"><br><br>
-
+        <input type="hidden" name="submit_post" value="1">
         <button class="sub-btn" type="submit">
             Upload Post
         </button>
@@ -105,9 +103,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_post'])) {
 
     <h2>Your Posts</h2>
     <?php
+
+    $user_id = $_SESSION['user_id'];
     $sql = "SELECT p.*, c.cat_name 
             FROM OKGPOSTS p 
             JOIN categories c ON p.cat_id = c.id 
+            WHERE p.author_id = $user_id
             ORDER BY p.createdAt DESC";
     $result = $conn->query($sql);
 
@@ -121,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_post'])) {
                  " | Category: <span class='cat'>" . htmlspecialchars($post['cat_name']) . "</span></small><br><br>";
             echo "<p>" . nl2br(htmlspecialchars($post['content'])) . "</p>";
             if ($post['image']) {
-                echo "<img src='{$post['image']}' alt='Post image'>";
+                echo "<img src='{$post['image']}' alt='Post image' class='post-image' >";
             }
             echo "<a href='?delete={$post['id']}' class='delete-btn '
                         onclick='return confirm(\"Delete this post forever?\");'>

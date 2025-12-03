@@ -30,7 +30,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sql->bind_param('ssis', $uname, $hashed_password, $age, $name);
 
             if ($sql->execute()) {
+                
+                $user_id = $conn -> insert_id;
+                $_SESSION['user_id'] = $user_id;
+                $_SESSION['username'] = $uname;
+                $_SESSION['logged_in'] = true;
+
+                $sql->close();
+                $check->close();
+                $conn->close();               
+
                 $message = "User registered successfully!";
+                header("Location:dashboard.php");
+                exit();
             } else {
                 $message = "Error: " . $conn->error;
             }
@@ -63,11 +75,7 @@ $conn->close();
                     <button type="submit">Register</button>
                 </form>
 
-<<<<<<< Updated upstream
-            <p class="login-register">
-=======
             <p class="login-register"><br>
->>>>>>> Stashed changes
             Already have an account? <a href="home.php">Login here</a>
         </p>
 
