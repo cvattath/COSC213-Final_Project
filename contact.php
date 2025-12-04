@@ -54,6 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 =======
 
+
 <body>
 <div id="nav-bar">
     <div id="nav-block">
@@ -79,6 +80,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 <div id="main-block">
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 
