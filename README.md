@@ -57,3 +57,14 @@ INSERT INTO categories (cat_name, log_name) VALUES
 ('Local Hikes', 'local_hikes'),
 ('Local News', 'local_news'),
 ('Local Foods', 'local_foods');
+
+
+CREATE TABLE contacts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    phone VARCHAR(20),
+    subject VARCHAR(150),
+    message TEXT NOT NULL,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
