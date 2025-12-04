@@ -48,11 +48,39 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>Contact Us</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<<<<<<< Updated upstream
     <!-- Main CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
+=======
 
 <body>
+<div id="nav-bar">
+    <div id="nav-block">
+    <a href="home.php">HOME</a>
+    <a href="contact.php">CONTACT US</a>
+
+    </div>
+    <div id="login-block">
+        <form method="POST" action="login.php">
+    <input type="text" placeholder="USERNAME" name="username" required/>
+    <input type="password" placeholder="PASSWORD" name="password" required/>
+    <input type="submit" value="LOGIN">
+    </form> 
+    <p class="signup-text">Haven't signed up yet?<a href="register.php"> Click here.</a></p>
+    
+    </div>
+</div>
+
+<div id="main">
+    <h1 class="main-title">Prime-OKG</h1>
+</div>
+
+
+
+<div id="main-block">
+>>>>>>> Stashed changes
+
 
 <div class="container">
 
