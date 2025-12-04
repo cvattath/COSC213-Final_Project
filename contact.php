@@ -41,14 +41,45 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contact Us</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+</head>
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+<body>
+<div id="nav-bar">
+    <div id="nav-block">
+    <a href="home.php">HOME</a>
+    <a href="contact.php">CONTACT US</a>
+
+    </div>
+    <div id="login-block">
+        <form method="POST" action="login.php">
+    <input type="text" placeholder="USERNAME" name="username" required/>
+    <input type="password" placeholder="PASSWORD" name="password" required/>
+    <input type="submit" value="LOGIN">
+    </form> 
+    <p class="signup-text">Haven't signed up yet?<a href="register.php"> Click here.</a></p>
+    
+    </div>
+</div>
+
+<div id="main">
+    <h1 class="main-title">Prime-OKG</h1>
+</div>
+
+
+
+<div id="main-block">
+>>>>>>> 125d13e58009e39d3e0661edc5b896deb6b15eb0
     <!-- Main CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -126,5 +157,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 </div>
 
+</div>
+
+
+<div id="footer">
+    <h1>Footer</h1>
+</div>
+<script src="script.js" async></script>
 </body>
+
 </html>
