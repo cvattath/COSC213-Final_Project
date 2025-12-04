@@ -49,11 +49,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="style.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+
+<div id="main-block">
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
 <body>
 <div id="nav-bar">
     <div id="nav-block">
@@ -76,19 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <h1 class="main-title">Prime-OKG</h1>
 </div>
 
-
-
-<div id="main-block">
->>>>>>> 125d13e58009e39d3e0661edc5b896deb6b15eb0
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="style.css">
-</head>
-=======
-
-
-
-
-<body>
 <div id="nav-bar">
     <div id="nav-block">
     <a href="home.php">HOME</a>
