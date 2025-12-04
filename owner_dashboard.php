@@ -44,10 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delet
                 // delete post record
                 $stmt = $pdo->prepare('DELETE FROM OKGPOSTS WHERE id = ?');
                 $stmt->execute([$postId]);
-                $postMessage = '投稿(ID: ' . $postId . ')を削除しました。';
+                $postMessage = 'Post(ID: ' . $postId . ') is deleted.';
             }
         } catch (Exception $e) {
-            $errorMessage = '投稿の削除中にエラーが発生しました。';
+            $errorMessage = 'Error occuerd during deletion.';
         }
     }
 }
@@ -113,6 +113,7 @@ $sqlUsers = '
 $usersStmt = $pdo->query($sqlUsers);
 $users = $usersStmt->fetchAll();
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
