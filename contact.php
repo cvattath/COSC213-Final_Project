@@ -126,5 +126,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </div>
 <script src="script.js" async></script>
 </body>
-
 </html>
