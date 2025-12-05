@@ -61,12 +61,16 @@ $posts = $pdo->query("SELECT p.id, p.title, p.content, p.image, p.createdAt,
     <?php else: ?>
         <div class="post-grid">
             <?php foreach ($posts as $post): ?>
-                <div class="post-card">
+                <<div class="post-card" onclick="window.location.href='post.php?id=<?= $post['id'] ?>'">
                     <?php if (!empty($post['image'])): ?>
                         <img src="<?= htmlspecialchars($post['image']) ?>" alt="Post image" class="post-image">
                     <?php endif; ?>
                     <div class="post-content">
-                    <h2><?= htmlspecialchars($post['title']) ?></h2>
+                    <h2>
+                    <a href="post.php?id=<?= $post['id'] ?>">
+                    <?= htmlspecialchars($post['title']) ?>
+                    </a>
+                    </h2>
                     <p style="color:#666; font-size:14px;">
                     
                     <?= htmlspecialchars($post['author_name']) ?> • 

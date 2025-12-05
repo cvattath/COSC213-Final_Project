@@ -24,7 +24,7 @@ $status_message = "";
    HELPER
 ======================================================== */
 function redirect(){
-    header("Location: admin-dashboard.php");
+    header("Location: admin_dashboard.php");
     exit;
 }
 
@@ -100,14 +100,21 @@ $messageCount = $conn->query("SELECT COUNT(*) FROM contacts")->fetch_row()[0];
    FETCH DATA
 ======================================================== */
 
-/* USERS */
-$users = $conn->query("
-    SELECT id, u_name, name, age, createdAt
-    FROM users
-    WHERE u_name LIKE '%$safeSearch%'
-       OR name   LIKE '%$safeSearch%'
-    ORDER BY id ASC
-");
+if ($safeSearch !== "") {
+    $users = $conn->query("
+        SELECT id, u_name, name, age, createdAt
+        FROM users
+        WHERE u_name LIKE '%$safeSearch%'
+           OR name LIKE '%$safeSearch%'
+        ORDER BY id ASC
+    ");
+} else {
+    $users = $conn->query("
+        SELECT id, u_name, name, age, createdAt
+        FROM users
+        ORDER BY id ASC
+    ");
+}
 
 /* POSTS */
 $posts = $conn->query("

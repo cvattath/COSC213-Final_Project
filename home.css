@@ -188,7 +188,6 @@ body{
 .post-card {
     display: grid;
     grid-template-columns: 350px 1fr;
-    gap: 24px;
 
     background:#ffffff;
     border-radius:16px;
@@ -218,8 +217,7 @@ body{
 ============================ */
 
 .post-card .post-content {
-    padding:24px 50px;
-
+    padding:24px 25px;
     display:flex;
     flex-direction:column;
     justify-content:center;
