@@ -1,4 +1,4 @@
-// script.js - THE ONE THAT WORKS 100%
+
 document.addEventListener('DOMContentLoaded', () => {
     const checkboxes = document.querySelectorAll('.cat-filter');
     const container = document.getElementById('posts-container');
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .map(cb => cb.value);
 
         const url = checked.length > 0
-            ? `home.php?cat[]=${checked.join('&cat[]=')}`   // ← THIS MATCHES YOUR PHP
+            ? `home.php?cat[]=${checked.join('&cat[]=')}` 
             : 'home.php';
 
         fetch(url)
