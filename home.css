@@ -347,6 +347,78 @@ body{
     }
 }
 
+<<<<<<< Updated upstream
+=======
+/* ==========================
+ Logged-in Navbar Styles
+========================== */
+
+.welcome-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-align:right;
+}
+
+/* username text */
+.welcome-box p{
+    margin-right:10px;
+    margin-bottom:0;
+    font-size:14px;
+    color:#ffeede;
+    text-shadow:0 1px 3px rgba(0,0,0,0.35);
+}
+
+/* action buttons */
+
+.nav-btn{
+    background:linear-gradient(135deg,#ffcc9a,#ffdcb8);
+    color:#3b2b20;
+
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+    text-decoration:none;
+
+    box-shadow:0 2px 5px rgba(0,0,0,0.12),
+               inset 0 1px 3px rgba(255,255,255,.35);
+
+    transition:.2s ease;
+}
+
+.nav-btn:hover{
+    background:linear-gradient(135deg,#ffdcb8,#fff0dc);
+    transform:translateY(-2px);
+}
+
+/* logout button coloring */
+
+.logout-btn{
+    background:linear-gradient(135deg,#ff9a9a,#ffb0b0);
+}
+
+.logout-btn:hover{
+    background:linear-gradient(135deg,#ffb0b0,#ffd6d6);
+}
+
+/* mobile collapse */
+
+@media(max-width:800px){
+    .welcome-box{
+        width:100%;
+        justify-content:center;
+        flex-wrap:wrap;
+        gap:6px;
+    }
+
+    .welcome-box p{
+        width:100%;
+        text-align:center;
+        margin-bottom:6px;
+    }
+}
+>>>>>>> Stashed changes
 
 
 
