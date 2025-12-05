@@ -358,12 +358,8 @@ th{
 <!-- POSTS -->
 <h2>Blog Posts</h2>
 
-<?php if($posts->num_rows > 0): ?>
-<?php while($post = $posts->fetch_assoc()): ?>
-
-<div class="post clickable" onclick="togglePost(<?= $post['id'] ?>)">
-
-<?php while($post = $posts->fetch_assoc()): ?>
+<?php if ($posts->num_rows > 0): ?>
+<?php while ($post = $posts->fetch_assoc()): ?>
 
 <div class="post clickable" onclick="togglePost(<?= $post['id'] ?>)">
 
@@ -374,19 +370,23 @@ th{
         • <?= htmlspecialchars($post['createdAt']) ?>
     </small>
 
-    <!-- CONTENT WRAPPER THAT SLIDES -->
+    <!-- COLLAPSIBLE CONTENT -->
     <div class="post-content" id="post-<?= $post['id'] ?>">
 
         <p><?= nl2br(htmlspecialchars($post['content'])) ?></p>
 
-        <?php if($post['image']): ?>
-            <img src="<?= htmlspecialchars($post['image']) ?>" class="post-image">
+        <?php if ($post['image']): ?>
+            <img 
+                src="<?= htmlspecialchars($post['image']) ?>" 
+                class="post-image" 
+                alt="Post image"
+            >
         <?php endif; ?>
 
         <a class="delete-btn"
            href="?delete_post=<?= $post['id'] ?>"
            onclick="return confirm('Delete this post?')">
-           Delete Post
+            Delete Post
         </a>
 
     </div>
@@ -394,14 +394,10 @@ th{
 </div>
 
 <?php endwhile; ?>
-
-
-</div>
-
-<?php endwhile; ?>
 <?php else: ?>
-<p>No posts found.</p>
+    <p>No posts found.</p>
 <?php endif; ?>
+
 
 
 <!-- CONTACTS -->
