@@ -1,0 +1,297 @@
+/* ============================
+   GLOBAL RESET
+============================ */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background:linear-gradient(135deg,#fffaf5,#ffeede);
+    color:#3b2b20;
+    line-height:1.6;
+}
+
+/* ============================
+   NAVBAR
+============================ */
+
+#nav-bar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    background:linear-gradient(45deg,#2b1812,#6b3d2f);
+    height:130px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 40px;
+
+    box-shadow:0 4px 20px rgba(0,0,0,0.25);
+}
+
+/* NAV LINKS */
+
+#nav-block{
+    display:flex;
+    gap:30px;
+}
+
+#nav-block a{
+    color:#ffeede;
+    text-decoration:none;
+    font-size:20px;
+    letter-spacing:1px;
+    position:relative;
+    transition:.25s ease;
+}
+
+#nav-block a:hover{
+    color:#ffffff;
+}
+
+#nav-block a::after{
+    content:"";
+    position:absolute;
+    height:3px;
+    width:0;
+    bottom:-5px;
+    left:0;
+    background:#ffd4b0;
+    transition:.25s ease;
+    border-radius:2px;
+}
+
+#nav-block a:hover::after{
+    width:100%;
+}
+
+/* ============================
+   LOGIN BLOCK
+============================ */
+
+#login-block{
+    background:rgba(255,255,255,0.12);
+    border-radius:14px;
+    padding:12px 14px;
+    backdrop-filter:blur(6px);
+
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    min-width:200px;
+
+    box-shadow:0 0 15px rgba(0,0,0,0.15);
+}
+
+#login-block input{
+    padding:7px 12px;
+    border-radius:30px;
+    border:none;
+    outline:none;
+    font-size:12px;
+}
+
+#login-block input[type=submit]{
+    background:#ffcc9a;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.25s ease;
+}
+
+#login-block input[type=submit]:hover{
+    background:#ffdcb8;
+}
+
+.signup-text{
+    font-size:12px;
+    color:#ffeede;
+}
+
+.signup-text a{
+    color:#ffd4b0;
+    text-decoration:none;
+}
+
+.signup-text a:hover{
+    text-decoration:underline;
+}
+
+/* ============================
+   HERO HEADER
+============================ */
+
+#main{
+    height:260px;
+    background:
+        linear-gradient(180deg,transparent,rgba(0,0,0,0.35)),
+        url("https://images.unsplash.com/photo-1542826438-f14570945d6a") center/cover fixed;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.main-title{
+    font-size:80px;
+    color:#fff;
+    letter-spacing:6px;
+    text-shadow:0 5px 25px rgba(0,0,0,0.5);
+
+    animation:fadeDown .9s ease forwards;
+}
+
+@keyframes fadeDown{
+    from{opacity:0;transform:translateY(-30px);}
+    to{opacity:1;transform:none;}
+}
+
+/* ============================
+   POSTS CONTAINER
+============================ */
+
+#post-block {
+    background:linear-gradient(#0a0403,#351008);
+    width: 100%;
+    padding: 40px;
+}
+
+#post-block h1 {
+    margin-bottom: 20px;
+    color:#fff;
+    text-align:center;
+    letter-spacing:2px;
+}
+
+/* ============================
+   POSTS GRID
+============================ */
+
+.posts-grid {
+    display: grid;
+    gap: 40px;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* ============================
+   POST CARD
+============================ */
+
+.post-card {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 24px;
+
+    background:#ffffff;
+    border-radius:16px;
+    overflow:hidden;
+
+    box-shadow:0 8px 30px rgba(0,0,0,0.15);
+    transition:.3s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-6px);
+    box-shadow:0 14px 40px rgba(0,0,0,0.2);
+}
+
+/* ============================
+   POST IMAGE
+============================ */
+
+.post-card .post-image {
+    width:100%;
+    height:100%;
+    min-height:260px;
+    object-fit:cover;
+}
+
+/* ============================
+   POST CONTENT
+============================ */
+
+.post-card .post-content {
+    padding:24px 50px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.post-content h2{
+    margin-bottom:5px;
+}
+
+.post-content p{
+    font-size:14px;
+    color:#444;
+}
+
+/* ============================
+   FOOTER
+============================ */
+
+
+#footer{
+    width:100%;
+    margin-top:80px;
+    background:linear-gradient(45deg,#2b1812,#6b3d2f);
+    color:#fff;
+
+    padding:35px 0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    box-shadow:0 -5px 12px rgba(0,0,0,0.25);
+}
+
+#footer h1{
+    margin:0;
+    letter-spacing:3px;
+    opacity:.85;
+    font-size:26px;
+
+/* ============================
+   RESPONSIVE
+============================ */
+
+@media(max-width:800px){
+
+    #nav-bar{
+        flex-direction:column;
+        height:auto;
+        padding:15px;
+        gap:10px;
+    }
+
+    #login-block{
+        width:100%;
+    }
+
+    .main-title{
+        font-size:48px;
+    }
+
+    .post-card{
+        grid-template-columns:1fr;
+    }
+
+    .post-card .post-image{
+        height:220px;
+    }
+
+    .post-card .post-content{
+        padding:20px;
+    }
+}
