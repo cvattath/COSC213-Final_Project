@@ -4,8 +4,8 @@ Main Structure of the body
 */
 #nav-bar{
     background:linear-gradient(black,rgb(46, 35, 35));
-    height: 180px;
-    padding: 0 40px;
+    min-height: 170px;
+    padding: 10px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -69,10 +69,10 @@ Main Structure of the body
 }
 
 #login-block .signup-text {
-  margin: 8px 0 0;
+  margin: 4px 0 0;
   text-align: center;
   font-size: 12px;
-  color: #444;
+  color: whitesmoke;
 }
 
 #login-block .signup-text a {

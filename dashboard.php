@@ -52,10 +52,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_post'])) {
             VALUES ('$title', '$author_id', '$cat_id', '$content', '$image')";
 
     if ($conn->query($sql) === TRUE) {
+        header("Location: dashboard.php?success=1");
         $message = "Post uploaded successfully!";
+        exit;
     } else {
         $message = "Error: " . $conn->error;
-    }
+}
 }
 ?>
 <!DOCTYPE html>
