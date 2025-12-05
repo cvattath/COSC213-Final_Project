@@ -24,6 +24,7 @@ $pdo = get_pdo();
 
     </div>
     <div id="login-block">
+<<<<<<< Updated upstream
         <form method="POST" action="login.php">
     <input type="text" placeholder="USERNAME" name="username" required/>
     <input type="password" placeholder="PASSWORD" name="password" required/>
@@ -31,7 +32,54 @@ $pdo = get_pdo();
     </form> 
     <p class="signup-text">Haven't signed up yet?<a href="register.php"> Click here.</a></p>
     
+=======
+
+<?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
+
+    <div class="welcome-box">
+        <p>Welcome, <strong><?= htmlspecialchars($_SESSION['username']) ?></strong></p>
+
+        <?php if(isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+
+            <a class="nav-btn" href="admin-dashboard.php">
+                Admin Dashboard
+            </a>
+
+        <?php else: ?>
+
+            <a class="nav-btn" href="dashboard.php">
+                Dashboard
+            </a>
+
+            <a class="nav-btn" href="dashboard.php#new-post">
+                Create Post
+            </a>
+
+        <?php endif; ?>
+
+        <a class="nav-btn logout-btn" href="logout.php">Logout</a>
+>>>>>>> Stashed changes
     </div>
+
+<?php else: ?>
+
+    <!-- SHOW LOGIN FORM IF NOT LOGGED IN -->
+    <form method="POST" action="login.php">
+        <input type="text" placeholder="USERNAME" name="username" required />
+        <input type="password" placeholder="PASSWORD" name="password" required />
+        <input type="submit" value="LOGIN">
+    </form>
+
+    <p class="signup-text">
+        Haven't signed up yet?
+        <a href="register.php"> Click here.</a>
+    </p>
+    <p class="signup-text">Are you an admin?<a href="admin_login.php"> Welcome Back</a></p>
+
+<?php endif; ?>
+
+</div>
+
 </div>
 
 <div id="main">
