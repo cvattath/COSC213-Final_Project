@@ -30,7 +30,7 @@ $pdo = get_pdo();
     <input type="submit" value="LOGIN">
     </form> 
     <p class="signup-text">Haven't signed up yet?<a href="register.php"> Click here</a></p>
-    <p class="signup-text">Are you an owner?<a href="admin_login.php">Welcome Back</a></p>
+    <p class="signup-text">Are you an owner?<a href="admin_login.php"> Welcome Back</a></p>
     
     </div>
 </div>
