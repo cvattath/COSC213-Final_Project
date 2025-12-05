@@ -378,11 +378,12 @@ h1 {
 }
 
 
-.filter-checkbox{
+label.filter-checkbox{
   display: inline-flex;
   gap:6px;
   cursor:pointer;
-  color:#ffffff
+  color: #df0c0c !important;
+  
 }
 
 .post-a-d {

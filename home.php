@@ -44,7 +44,7 @@ $pdo = get_pdo();
 
 <div id="main-block">
     <div id="post-block">
-    <h1 class ="filter-checkbox">Recent Posts</h1>
+    <h1 >Recent Posts</h1>
     
     <label class ="filter-checkbox" for="localhikes">
         <input type="checkbox" class="cat-filter" value="1">
