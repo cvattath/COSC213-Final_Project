@@ -4,7 +4,7 @@ Main Structure of the body
 */
 #nav-bar{
     background:linear-gradient(black,rgb(46, 35, 35));
-    min-height: 180px;
+    min-height: 170px;
     padding: 10px 40px;
     display: flex;
     justify-content: space-between;
