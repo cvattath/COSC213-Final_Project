@@ -24,24 +24,6 @@ $pdo = get_pdo();
 
     </div>
     <div id="login-block">
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        <form method="POST" action="login.php">
-    <input type="text" placeholder="USERNAME" name="username" required/>
-    <input type="password" placeholder="PASSWORD" name="password" required/>
-    <input type="submit" value="LOGIN">
-    </form> 
-    <p class="signup-text">Haven't signed up yet?<a href="register.php"> Click here.</a></p>
-    
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 
 <?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
 
@@ -67,16 +49,6 @@ $pdo = get_pdo();
         <?php endif; ?>
 
         <a class="nav-btn logout-btn" href="logout.php">Logout</a>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     </div>
 
 <?php else: ?>
