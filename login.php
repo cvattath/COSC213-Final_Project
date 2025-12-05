@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div> </div>
     <div style="padding: 50px; text-align:center; color:red;">
         <h2><?= htmlspecialchars($error ?? '') ?></h2>
-        <p><a href="home.php">← Back to home</a></p>
+        <p class="login-page-hyper"><a  href="home.php">← Back to home</a></p>
     </div>
 </body>
 </html>

@@ -73,6 +73,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <h1 class="main-title">Prime-OKG</h1>
 </div>
 
+
+
 <div id="main-block">
 
 <div class="container">
