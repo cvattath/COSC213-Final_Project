@@ -42,27 +42,114 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Failed</title>
-    <link href="style.css" rel="stylesheet">
+    <style>
+        /* ==========================
+   LOGIN PAGE STYLING
+========================== */
+
+.login-wrapper {
+    min-height: calc(100vh - 150px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    width: 380px;
+    background: #fff;
+    padding: 35px 40px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.login-box h2 {
+    margin-bottom: 15px;
+    letter-spacing: 0.3px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 11px 14px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+.login-box input:focus {
+    border-color: #2c7df0;
+    outline: none;
+}
+
+.login-box input[type="submit"] {
+    background: linear-gradient(to right, #2c7df0, #235bd7);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.login-box input[type="submit"]:hover{
+    background: linear-gradient(to right, #235bd7, #1c47b3);
+}
+
+.login-error {
+    margin-bottom: 15px;
+    background: #ffecec;
+    color: #b51f2e;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.login-box p {
+    margin-top: 10px;
+    font-size: 14px;
+}
+</style>
+
 </head>
 <body>
-    <div id="nav-bar">
-        <div id="nav-block">
-    <a href="home.php">HOME</a>
-    <a href="contact.php">CONTACT US</a>
+<div class="login-wrapper">
+
+    <div class="login-box">
+
+        <h2>Login</h2>
+
+        <?php if(!empty($error)): ?>
+            <div class="login-error">
+                <?= htmlspecialchars($error) ?>
+            </div>
+        <?php endif; ?>
+
+        <form method="POST" action="login.php">
+
+            <input type="text"
+                   placeholder="Username"
+                   name="username"
+                   required>
+
+            <input type="password"
+                   placeholder="Password"
+                   name="password"
+                   required>
+
+            <input type="submit" value="Log In">
+
+        </form>
+
+        <p>
+            Haven't signed up yet?
+            <a href="register.php">Create an account</a>
+        </p>
 
     </div>
-    <div id="login-block">
-        <form method="POST" action="login.php">
-    <input type="text" placeholder="USERNAME" name="username" required/>
-    <input type="password" placeholder="PASSWORD" name="password" required/>
-    <input type="submit" value="LOGIN">
-    </form> 
-    <p class="signup-text">Haven't signed up yet?<a href="register.php"> Click here.</a></p>
-    
-    </div> </div>
-    <div style="padding: 50px; text-align:center; color:red;">
-        <h2><?= htmlspecialchars($error ?? '') ?></h2>
-        <p><a href="home.php">← Back to home</a></p>
-    </div>
+
+</div>
+
 </body>
+
 </html>

@@ -75,11 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
-
-
 <div id="main-block">
-
-
 
 <div class="container">
 
@@ -130,5 +126,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </div>
 <script src="script.js" async></script>
 </body>
-
 </html>
