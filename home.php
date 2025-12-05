@@ -27,6 +27,7 @@ $pdo = get_pdo();
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <form method="POST" action="login.php">
     <input type="text" placeholder="USERNAME" name="username" required/>
     <input type="password" placeholder="PASSWORD" name="password" required/>
@@ -35,6 +36,8 @@ $pdo = get_pdo();
     <p class="signup-text">Haven't signed up yet?<a href="register.php"> Click here.</a></p>
     
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -66,6 +69,9 @@ $pdo = get_pdo();
         <a class="nav-btn logout-btn" href="logout.php">Logout</a>
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
