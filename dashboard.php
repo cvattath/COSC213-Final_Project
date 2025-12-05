@@ -52,10 +52,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_post'])) {
             VALUES ('$title', '$author_id', '$cat_id', '$content', '$image')";
 
     if ($conn->query($sql) === TRUE) {
+        header("Location: dashboard.php?success=1");
         $message = "Post uploaded successfully!";
+        exit;
     } else {
         $message = "Error: " . $conn->error;
-    }
+}
 }
 ?>
 <!DOCTYPE html>
@@ -88,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_post'])) {
         ?><br>
 
         Content:<br>
-        <textarea name="content" rows="8" required style="width:100%; padding:10px;"></textarea><br><br>
+        <textarea name="content" rows="8" required ></textarea><br><br>
 
         Image (optional):<br>
         <input type="file" name="image"><br><br>
@@ -105,9 +107,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_post'])) {
     <?php
 
     $user_id = $_SESSION['user_id'];
-    $sql = "SELECT p.*, c.cat_name 
+    $sql = "SELECT p.*, c.cat_name, u.u_name as authors_name
             FROM OKGPOSTS p 
             JOIN categories c ON p.cat_id = c.id 
+            JOIN users u ON u.id = p.author_id
             WHERE p.author_id = $user_id
             ORDER BY p.createdAt DESC";
     $result = $conn->query($sql);
@@ -117,9 +120,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_post'])) {
     } else {
         while ($post = $result->fetch_assoc()) {
             echo "<div class='post'>";
+
             echo "<h3>" . htmlspecialchars($post['title']) . "</h3>";
-            echo "<small>Posted on: " . $post['createdAt'] . 
-                 " | Category: <span class='cat'>" . htmlspecialchars($post['cat_name']) . "</span></small><br><br>";
+            
+            echo "<p class='post-a-d'>
+            <strong>" . htmlspecialchars($post['authors_name']) . "</strong> • 
+        " . date('F j, Y g:i A', strtotime($post['createdAt'])) . "
+            </p>";
+
             echo "<p>" . nl2br(htmlspecialchars($post['content'])) . "</p>";
             if ($post['image']) {
                 echo "<img src='{$post['image']}' alt='Post image' class='post-image' >";
