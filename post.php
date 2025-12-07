@@ -1,20 +1,23 @@
 <?php
-require __DIR__.'/db.php';
+session_start();
+require __DIR__ . '/db.php';
+
 $pdo = get_pdo();
 
-if (!isset($_GET['id'])) {
-    die("Post not found.");
+$post_id = $_GET['id'] ?? null;
+
+if (!is_numeric($post_id)) {
+    die("Invalid post.");
 }
 
-$id = (int) $_GET['id'];
-
 $stmt = $pdo->prepare("
-    SELECT p.*, u.u_name
+    SELECT p.*, u.u_name AS author_name
     FROM okgposts p
-    JOIN users u ON p.author_id = u.id
+    INNER JOIN users u ON u.id = p.author_id
     WHERE p.id = ?
 ");
-$stmt->execute([$id]);
+$stmt->execute([$post_id]);
+
 $post = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$post) {
@@ -23,94 +26,133 @@ if (!$post) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title><?= htmlspecialchars($post['title']) ?></title>
+    <title><?= htmlspecialchars($post['title']) ?></title>
+    <link rel="stylesheet" href="viewpost.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-<link rel="stylesheet" href="home.css">
-
-<style>
-
-/* ===================
-   FULL POST PAGE
-=================== */
-
-.article-container{
-    max-width:900px;
-    margin:60px auto;
-    background:#ffffff;
-    border-radius:15px;
-    padding:40px;
-    box-shadow:0 10px 35px rgba(0,0,0,0.15);
-}
-
-.article-title{
-    font-size:38px;
-    margin-bottom:10px;
-}
-
-.article-meta{
-    color:#888;
-    font-size:14px;
-    margin-bottom:20px;
-}
-
-.article-image{
-    width:100%;
-    border-radius:14px;
-    margin:20px 0;
-}
-
-.article-body{
-    font-size:17px;
-    line-height:1.8;
-}
-
-.back-link{
-    display:inline-block;
-    margin-top:20px;
-    color:#b85f3a;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-.back-link:hover{
-    text-decoration:underline;
-}
-
-</style>
 </head>
-
 <body>
 
-<div class="article-container">
+<div id="nav-bar">
+    <div id="nav-block">
+    <a href="home.php">HOME</a>
+    <a href="contact.php">CONTACT US</a>
 
-    <h1 class="article-title">
+    </div>
+    <div id="login-block">
+      
+<?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
+
+    <div class="welcome-box">
+        <p>Welcome, <strong><?= htmlspecialchars($_SESSION['username']) ?></strong></p>
+
+        <?php if(isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+
+            <a class="nav-btn" href="admin_dashboard.php">
+                Admin Dashboard
+            </a>
+
+        <?php else: ?>
+
+            <a class="nav-btn" href="dashboard.php">
+                Dashboard
+            </a>
+
+            <a class="nav-btn" href="dashboard.php#new-post">
+                Create Post
+            </a>
+
+        <?php endif; ?>
+
+        <a class="nav-btn logout-btn" href="logout.php">Logout</a>
+    </div>
+
+<?php else: ?>
+
+    <!-- SHOW LOGIN FORM IF NOT LOGGED IN -->
+    <form method="POST" action="login.php">
+        <input type="text" placeholder="USERNAME" name="username" required />
+        <input type="password" placeholder="PASSWORD" name="password" required />
+        <input type="submit" value="LOGIN">
+    </form>
+
+    <p class="signup-text">
+        Haven't signed up yet?
+        <a href="register.php"> Click here.</a>
+    </p>
+    <p class="signup-text">Are you an admin?<a href="admin_login.php"> Welcome Back</a></p>
+
+<?php endif; ?>
+        
+    </div>
+
+  </div>
+
+<div class="post-container">
+
+    <h1 class="post-title">
         <?= htmlspecialchars($post['title']) ?>
     </h1>
 
-    <div class="article-meta">
-        By <?= htmlspecialchars($post['u_name']) ?>
-        • <?= date('F j, Y \a\t g:i A', strtotime($post['createdAt'])) ?>
-    </div>
+    <p class="post-meta">
+        By <strong><?= htmlspecialchars($post['author_name']) ?></strong> |
+        <?= date('F j, Y g:i A', strtotime($post['createdAt'])) ?>
+    </p>
 
-    <?php if ($post['image']): ?>
-        <img 
-            src="<?= htmlspecialchars($post['image']) ?>" 
-            class="article-image"
-            alt="Post Image">
+    <?php if (!empty($post['image'])): ?>
+        <img
+            src="<?= htmlspecialchars($post['image']) ?>"
+            class="post-image"
+        >
     <?php endif; ?>
 
-    <div class="article-body">
+    <div class="post-body">
         <?= nl2br(htmlspecialchars($post['content'])) ?>
     </div>
 
-    <a class="back-link" href="home.php">
-        ← Back to Home
+    <a href="home.php" class="back-btn">
+        ← Back to posts
     </a>
 
 </div>
 
+<div id="footer">
+  <div class="footer-wrapper">
+
+    <!-- LEFT COLUMN -->
+    <div class="footer-brand">
+      <h1 class="footer-title">Prime-OKG</h1>
+      <p class="footer-tagline">
+        Where everyday stories turn into shared moments. 
+      </p>
+    </div>
+
+    <!-- CENTER COLUMN -->
+    <div class="footer-links">
+      <a href="home.php">Home</a>
+      <a href="contact.php">Contact</a>
+      <a href="register.php">Register</a>
+      <a href="admin_login.php">Admin</a>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="footer-social">
+      <i class="bi bi-instagram"></i>
+      <i class="bi bi-twitter-x"></i>
+      <i class="bi bi-facebook"></i>
+      <i class="bi bi-envelope-fill"></i>
+    </div>
+
+    <!-- BOTTOM -->
+    <p class="footer-copy">
+      © <?php echo date("Y"); ?> Prime-OKG | All Rights Reserved.
+    </p>
+
+  </div>
+</div>
+
 </body>
 </html>
+

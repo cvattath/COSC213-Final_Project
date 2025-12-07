@@ -1,7 +1,5 @@
 
-/*
-Main Structure of the body
-*/
+
 #nav-bar{
     background:linear-gradient(black,rgb(46, 35, 35));
     min-height: 170px;
@@ -113,9 +111,7 @@ Main Structure of the body
     color: #ffffff;
 }
 
-/*
-Home post block styling
-*/
+
 .post-block-home {
     display: flex;
     flex-direction: column;
@@ -194,9 +190,7 @@ Home post block styling
     display: flex;
 }
 
-/*
-nav-header styling
-*/
+
 
 a{
     text-decoration: none;
