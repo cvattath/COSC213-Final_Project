@@ -1,5 +1,5 @@
 /* ============================
-   GLOBAL RESET
+   GLOBAL
 ============================ */
 
 *{
@@ -184,55 +184,215 @@ body{
 
 
 /* ============================
-   POST CARD
+   POST GRID LAYOUT
 ============================ */
 
-.post-card {
-    display: grid;
-    grid-template-columns: 350px 1fr;
+.post-grid{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:36px;
 
-    background:#ffffff;
-    border-radius:16px;
-    overflow:hidden;
-
-    box-shadow:0 8px 30px rgba(0,0,0,0.15);
-    transition:.3s ease;
-}
-
-.post-card:hover {
-    transform: translateY(-6px);
-    box-shadow:0 14px 40px rgba(0,0,0,0.2);
+    max-width: 100%;
+    margin:0 auto;
 }
 
 /* ============================
-   POST IMAGE
+      POST CARD
 ============================ */
 
-.post-card .post-image {
-    width:350px; 
-    height:300px; 
+.post-card{
+    display:grid;
+    grid-template-columns:350px 1fr;
+
+    height:290px;
+    width: 100%;
+    background:#ffffff;
+    border-radius:22px;
+    overflow:hidden;
+
+    box-shadow:0 10px 28px rgba(0,0,0,0.12);
+
+    transition:.25s ease;
+    border:3px solid rgba(145, 69, 4, 0.867);
+}
+
+.post-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 40px rgba(0,0,0,0.18);
+}
+
+/* ============================
+        POST IMAGE
+============================ */
+
+.post-image{
+    width:100%;
+    height:100%;
+    min-height:250px;
     object-fit:cover;
 }
 
 /* ============================
-   POST CONTENT
+     CONTENT PANEL
 ============================ */
 
-.post-card .post-content {
-    padding:24px 25px;
+.post-content{
     display:flex;
     flex-direction:column;
     justify-content:center;
+
+    padding:30px 34px;
+    gap:10px;
+
+    position:relative;
 }
+
+/* Accent divider */
+.post-content::before{
+    content:"";
+    width:20px;                         
+    height:5px;                         
+
+    background:linear-gradient(
+        90deg,
+        #6b3d2f 0%,
+        #d9a87c 50%,
+        #ffd4b0 100%
+    );
+
+    border-radius:999px;             
+    margin-bottom:8px;
+
+    opacity:.95;
+    transition:.35s ease;
+}
+/* ============================
+         TITLE
+============================ */
 
 .post-content h2{
-    margin-bottom:5px;
+    font-size:28px;
+    line-height:1.25;
+    color:#2b1812;
+    letter-spacing:.5px;
 }
 
-.post-content p{
-    font-size:14px;
-    color:#444;
+.post-content h2 a{
+    text-decoration:none;
+    color:inherit;
+    transition:.2s;
 }
+
+.post-content h2 a:hover{
+    color:#6b3d2f;
+}
+
+/* ============================
+         META LINE
+============================ */
+
+.post-a-d{
+    font-size:13px;
+    color:#8f6a50;
+    margin-bottom:6px;
+}
+
+/* ============================
+      EDITED BADGE
+============================ */
+
+.edited-tag{
+    background:#ffe3c7;
+    color:#a05c00;
+
+    padding:2px 10px;
+    border-radius:999px;
+
+    margin-left:8px;
+
+    font-size:11px;
+    letter-spacing:.4px;
+
+    white-space:nowrap;
+}
+
+/* ============================
+        PREVIEW TEXT
+============================ */
+
+.post-content p{
+    font-size:15px;
+    line-height:1.7;
+    color:#4a3b32;
+
+    max-width:98%;
+
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+
+    margin-top:2px;
+}
+
+/* ============================
+        EDIT BUTTON
+============================ */
+
+.edit-btn{
+    display:inline-block;
+    align-self:flex-start;
+    margin-top:10px;
+
+    background:linear-gradient(135deg,#6b3d2f,#a66b52);
+    color:#fff;
+
+    padding:7px 16px;
+    border-radius:999px;
+
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.7px;
+
+    text-decoration:none;
+    box-shadow:0 4px 12px rgba(0,0,0,.25);
+
+    transition:.2s ease;
+}
+
+.edit-btn:hover{
+    background:linear-gradient(135deg,#a66b52,#cc8a6d);
+    transform:translateY(-2px);
+}
+
+/* ============================
+      INTERACTIONS
+============================ */
+
+.post-card:hover .post-content::before{
+    width:110px;
+}
+
+.post-card:hover h2{
+    color:#6b3d2f;
+}
+
+/* ============================
+    FILTER CHECKBOX AREA
+============================ */
+
+.filter-checkbox{
+    font-size:15px;
+    font-weight:600;
+    margin-right:16px;
+    cursor:pointer;
+}
+
+.filter-checkbox input{
+    accent-color:#6b3d2f;
+    transform:scale(1.1);
+    margin-right:5px;
+}
+
 
 /* ============================
    FOOTER — FINAL COMPACT LAYOUT

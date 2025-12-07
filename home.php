@@ -105,7 +105,7 @@ $selected_cats = $_GET['cat'] ?? [];
 $selected_cats = array_filter($selected_cats, 'is_numeric');
 
 
-$sql = "SELECT p.id, p.title, p.content, p.image, p.createdAt, u.u_name AS author_name
+$sql = "SELECT p.id, p.title, p.content, p.image, p.createdAt, p.updatedAt, p.author_id, u.u_name AS author_name
        FROM okgposts p 
         INNER JOIN users u ON u.id = p.author_id";
 
@@ -138,15 +138,43 @@ $posts = $new_sql->fetchAll(pdo::FETCH_ASSOC);
  <?php endif; ?>
 
     <div class="post-content">
-    <h2><?= htmlspecialchars($post['title']) ?></h2>
+    <h2>
+    <a href="post.php?id=<?= $post['id'] ?>">
+        <?= htmlspecialchars($post['title']) ?>
+    </a>
+</h2>
+
 
     <p class="post-a-d">
     <strong><?= htmlspecialchars($post['author_name']) ?></strong> • 
-    <?= date('F j, Y \a\t g:i A', strtotime($post['createdAt'])) ?>
+    <?php
+$created = strtotime($post['createdAt']);
+$updated = !empty($post['updatedAt']) ? strtotime($post['updatedAt']) : null;
+
+echo date('F j, Y \a\t g:i A', $created);
+
+if ($updated && $updated > $created) {
+
+    echo " • <span class='edited-tag'>
+            Edited on " .
+            date('F j, Y \a\t g:i A', $updated) .
+          "</span>";
+
+}
+?>
+
+
     </p>
     <p>
     <?= nl2br(htmlspecialchars($post['content'])) ?>
     </p>
+        <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id'] == $post['author_id']): ?>
+    <a href="edit_post.php?id=<?= $post['id'] ?>" class="edit-btn">
+        Edit
+    </a>
+<?php endif; ?>
+
+
             </div>
         </div>
     <?php endforeach; ?>
