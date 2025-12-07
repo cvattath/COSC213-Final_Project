@@ -25,7 +25,7 @@ $pdo = get_pdo();
 
     </div>
     <div id="login-block">
-
+      
 <?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
 
     <div class="welcome-box">
@@ -33,7 +33,7 @@ $pdo = get_pdo();
 
         <?php if(isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
 
-            <a class="nav-btn" href="admin-dashboard.php">
+            <a class="nav-btn" href="admin_dashboard.php">
                 Admin Dashboard
             </a>
 
@@ -68,10 +68,17 @@ $pdo = get_pdo();
     <p class="signup-text">Are you an admin?<a href="admin_login.php"> Welcome Back</a></p>
 
 <?php endif; ?>
+        <form method="POST" action="login.php">
+    <input type="text" placeholder="USERNAME" name="username" required/>
+    <input type="password" placeholder="PASSWORD" name="password" required/>
+    <input type="submit" value="LOGIN">
+    </form> 
+    <p class="signup-text">Haven't signed up yet?<a href="register.php"> Click here</a></p>
+    <p class="signup-text">Are you an owner?<a href="admin_login.php"> Welcome Back</a></p>
+    
+    </div>
 
-</div>
-
-</div>
+  </div>
 
 <div id="main">
     <h1 class="main-title">Prime-OKG</h1>
@@ -81,7 +88,7 @@ $pdo = get_pdo();
 
 <div id="main-block">
     <div id="post-block">
-    <h1 >Recent Posts</h1>
+    <h1 class ="filter-checkbox">Recent Posts</h1>
     
     <label class ="filter-checkbox" for="localhikes">
         <input type="checkbox" class="cat-filter" value="1">
@@ -106,7 +113,7 @@ $selected_cats = array_filter($selected_cats, 'is_numeric');
 
 
 $sql = "SELECT p.id, p.title, p.content, p.image, p.createdAt, u.u_name AS author_name
-        FROM okgposts p 
+       FROM okgposts p 
         INNER JOIN users u ON u.id = p.author_id";
 
 if (!empty($selected_cats)) {
