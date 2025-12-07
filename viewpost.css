@@ -1,15 +1,11 @@
-/* ============================
-      GLOBAL RESET
-============================ */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-/* ============================
-           BODY
-============================ */
+
 body{
     min-height:100vh;
     background:linear-gradient(135deg,#fffaf5,#ffeede);
@@ -22,9 +18,7 @@ body{
     color:#3b2b20;
 }
 
-/* ============================
-           NAV BAR
-============================ */
+
 
 #nav-bar{
     position:sticky;
@@ -65,9 +59,7 @@ body{
     text-shadow:0 0 6px rgba(255,255,255,0.35);
 }
 
-/* ============================
-        LOGIN / USER BOX
-============================ */
+
 
 #login-block{
     display:flex;
@@ -103,9 +95,7 @@ body{
     font-weight:600;
 }
 
-/* ============================
-       SIGNUP LINKS
-============================ */
+
 
 .signup-text{
     color:#ffeede;
@@ -121,9 +111,7 @@ body{
     text-decoration:underline;
 }
 
-/* ============================
-          USER MENU
-============================ */
+
 
 .welcome-box{
     background:rgba(255,255,255,0.1);
@@ -162,9 +150,7 @@ body{
     color:#5a1b1b;
 }
 
-/* ============================
-      POST CONTAINER
-============================ */
+
 
 .post-container{
     width:100%;
@@ -182,9 +168,7 @@ body{
         inset 0 0 0 3px rgba(227,181,143,0.45);
 }
 
-/* ============================
-           TITLE
-============================ */
+
 .post-title{
     text-align:center;
     font-size:32px;
@@ -194,18 +178,14 @@ body{
     letter-spacing:1px;
 }
 
-/* ============================
-            META
-============================ */
+
 .post-meta{
     text-align:center;
     color:#9c7c65;
     margin-bottom:24px;
 }
 
-/* ============================
-           IMAGE
-============================ */
+
 .post-image{
     display:block;
     max-width:100%;
@@ -217,9 +197,7 @@ body{
         0 10px 26px rgba(0,0,0,.25);
 }
 
-/* ============================
-         CONTENT BOX
-============================ */
+
 .post-body{
     background:#fffaf7;
     padding:26px 30px;
@@ -233,9 +211,7 @@ body{
         inset 0 0 0 2px rgba(227,181,143,0.3);
 }
 
-/* ============================
-           BACK BTN
-============================ */
+
 .back-btn{
     display:block;
     margin-top:22px;
@@ -253,9 +229,7 @@ body{
     text-decoration:underline;
 }
 
-/* ============================
-   FOOTER — FINAL COMPACT LAYOUT
-============================ */
+
 
 #footer{
     width:100%;
@@ -265,7 +239,7 @@ body{
     box-shadow:0 -3px 10px rgba(0,0,0,0.25);
 }
 
-/* GRID */
+
 
 .footer-wrapper{
     max-width:1100px;
@@ -277,7 +251,7 @@ body{
     gap:20px;
 }
 
-/* LEFT */
+
 
 .footer-brand{
     display:flex;
@@ -298,7 +272,7 @@ body{
     max-width:260px;
 }
 
-/* CENTER */
+
 
 .footer-links{
     display:flex;
@@ -317,7 +291,7 @@ body{
     color:#fff;
 }
 
-/* RIGHT */
+
 
 .footer-social{
     display:flex;
@@ -337,7 +311,7 @@ body{
     transform:translateY(-2px);
 }
 
-/* COPYRIGHT */
+
 
 .footer-copy{
     grid-column:1 / -1;
@@ -348,9 +322,7 @@ body{
     color:#fff;
 }
 
-/* ============================
-        MOBILE LAYOUT
-============================ */
+
 @media(max-width:800px){
 
     #nav-bar{

@@ -1,6 +1,4 @@
-/* =====================================
-   ADMIN DASHBOARD — HOME THEME
-===================================== */
+
 
 body{
     font-family: 'Segoe UI', system-ui, sans-serif;
@@ -8,7 +6,7 @@ body{
     color:#3b2b20;
 }
 
-/* MAIN PANEL */
+
 
 .container{
     max-width:1100px;
@@ -20,7 +18,7 @@ body{
     box-shadow:0 10px 35px rgba(0,0,0,0.15);
 }
 
-/* HEADERS */
+
 
 h1{
     text-align:center;
@@ -36,7 +34,7 @@ h2{
     color:#2b1812;
 }
 
-/* BACK LINK */
+
 
 a{
     color:#6b3d2f;
@@ -47,9 +45,7 @@ a:hover{
     color:#2b1812;
 }
 
-/* =====================================
-   STATS
-===================================== */
+
 
 .stats{
     display:flex;
@@ -71,9 +67,7 @@ a:hover{
         inset 0 1px 3px rgba(255,255,255,.45);
 }
 
-/* =====================================
-   SEARCH BAR 
-===================================== */
+
 
 .search-box{
     margin:30px 0;
@@ -105,7 +99,7 @@ a:hover{
         inset 0 2px 6px rgba(0,0,0,.08);
 }
 
-/* BUTTON */
+
 
 .search-box button{
     background:linear-gradient(135deg,#ffcc9a,#ffdcb8);
@@ -126,22 +120,42 @@ a:hover{
     transition:all .2s ease;
 }
 
-/* hover */
+
 
 .search-box button:hover{
     background:linear-gradient(135deg,#ffdcb8,#fff0dc);
     transform:translateY(-2px);
 }
 
-/* active click */
+
 
 .search-box button:active{
     transform:translateY(0);
 }
 
-/* =====================================
-   TABLES
-===================================== */
+table{
+    width:100%;
+    table-layout: fixed;
+}
+
+th,
+td{
+    text-align:center;
+    vertical-align:middle;
+}
+
+th:nth-child(1), td:nth-child(1) { width:6%; }
+th:nth-child(2), td:nth-child(2) { width:20%; }
+th:nth-child(3), td:nth-child(3) { width:22%; }
+th:nth-child(4), td:nth-child(4) { width:8%; }
+th:nth-child(5), td:nth-child(5) { width:28%; }
+th:nth-child(6), td:nth-child(6) { width:16%; }
+
+.owner-delete-btn{
+    display:inline-block;
+    min-width:90px;
+}
+
 
 table{
     width:100%;
@@ -168,15 +182,11 @@ td{
     padding:9px;
 }
 
-/* alternate rows */
-
 tr:nth-child(even) td{
     background:#fff7ef;
 }
 
-/* =====================================
-   POSTS + MESSAGES CARDS
-===================================== */
+
 
 .post,
 .contact-card{
@@ -188,14 +198,14 @@ tr:nth-child(even) td{
     box-shadow:0 6px 18px rgba(0,0,0,.15);
 }
 
-/* clickable hover */
+
 
 .clickable:hover{
     transform:translateY(-2px);
     box-shadow:0 12px 26px rgba(0,0,0,.20);
 }
 
-/* image */
+
 
 .post-image{
     max-width:100%;
@@ -203,9 +213,7 @@ tr:nth-child(even) td{
     margin-top:12px;
 }
 
-/* =====================================
-   COLLAPSIBLE CONTENT
-===================================== */
+
 
 .post-content{
     overflow:hidden;
@@ -217,9 +225,7 @@ tr:nth-child(even) td{
     max-height:2500px;
 }
 
-/* =====================================
-   BUTTONS
-===================================== */
+
 
 .edit-btn,
 .owner-delete-btn,
@@ -253,9 +259,7 @@ tr:nth-child(even) td{
     box-shadow:0 8px 18px rgba(0,0,0,.2);
 }
 
-/* =====================================
-   STATUS MESSAGE
-===================================== */
+
 
 .msg{
     background:#e7ffe7;

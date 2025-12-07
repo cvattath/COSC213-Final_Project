@@ -1,6 +1,4 @@
-/* ============================
-      GLOBAL RESET
-============================ */
+
 * {
     margin: 0;
     padding: 0;
@@ -8,9 +6,7 @@
 }
 
 
-/* ============================
-       BODY BACKGROUND
-============================ */
+
 .body-dash {
     min-height: 100vh;
     background: linear-gradient(135deg, #fffaf5, #ffeede);
@@ -21,9 +17,7 @@
 }
 
 
-/* ============================
-        MAIN CONTAINER
-============================ */
+
 .container {
     max-width: 960px;
     margin: 0 auto;
@@ -38,9 +32,7 @@
 }
 
 
-/* ============================
-         HEADINGS
-============================ */
+
 h1 {
     text-align: center;
     color: #6b3d2f;
@@ -55,9 +47,7 @@ h2 {
 }
 
 
-/* ============================
-           HOME LINK
-============================ */
+
 .click-home{
     display:inline-block;
     margin:5px auto 18px;
@@ -76,9 +66,7 @@ h2 {
 }
 
 
-/* ============================
-             MSG
-============================ */
+
 .msg{
     background:#e6ffee;
     color:#206a36;
@@ -91,9 +79,7 @@ h2 {
 }
 
 
-/* ============================
-              FORM
-============================ */
+
 form{
     margin-top:25px;
 }
@@ -131,9 +117,7 @@ textarea{
 }
 
 
-/* ============================
-         CATEGORY RADIOS
-============================ */
+
 .cat-section{
     display:inline-flex;
     align-items:center;
@@ -159,17 +143,13 @@ textarea{
 }
 
 
-/* ============================
-           FILE INPUT
-============================ */
+
 input[type="file"]{
     margin:6px 0 16px;
 }
 
 
-/* ============================
-           SUBMIT
-============================ */
+
 .sub-btn{
     margin-top:10px;
 
@@ -201,9 +181,7 @@ input[type="file"]{
 }
 
 
-/* ============================
-              POSTS
-============================ */
+
 .post{
     background:#fffaf7;
     padding:22px 24px;
@@ -230,9 +208,7 @@ input[type="file"]{
 }
 
 
-/* ============================
-          AUTHOR + DATE
-============================ */
+
 .post-a-d{
     font-size:13px;
     color:#9c7c65;
@@ -240,17 +216,13 @@ input[type="file"]{
 }
 
 
-/* ============================
-             TEXT
-============================ */
+
 .post p{
     line-height:1.6;
 }
 
 
-/* ============================
-            IMAGE
-============================ */
+
 .post-image{
     max-width:100%;
     margin-top:12px;
@@ -259,9 +231,7 @@ input[type="file"]{
 }
 
 
-/* ============================
-         DELETE BUTTON
-============================ */
+
 .delete-btn{
     display:inline-block;
 
@@ -285,9 +255,7 @@ input[type="file"]{
 }
 
 
-/* ============================
-            MOBILE
-============================ */
+
 @media(max-width:700px){
 
     .container{

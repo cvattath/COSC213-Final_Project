@@ -9,18 +9,14 @@ if (!isset($_SESSION['logged_in'], $_SESSION['user_id'])) {
 
 $pdo = get_pdo();
 
-/* ------------------------
-   Validate Post ID
--------------------------*/
+
 $post_id = $_GET['id'] ?? null;
 
 if (!is_numeric($post_id)) {
     die("Invalid post.");
 }
 
-/* ------------------------
-   Get Post
--------------------------*/
+
 $stmt = $pdo->prepare("
     SELECT *
     FROM okgposts
@@ -33,33 +29,27 @@ if (!$post) {
     die("Post not found.");
 }
 
-/* ------------------------
-   Ownership check
--------------------------*/
+
 if ($post['author_id'] != $_SESSION['user_id']) {
     die("You are not allowed to edit this post.");
 }
 
-/* ------------------------
-   Load category list
--------------------------*/
+
 $cats = $pdo->query("SELECT id, cat_name FROM categories")
             ->fetchAll(PDO::FETCH_ASSOC);
 
-/* ------------------------
-   SAVE CHANGES
--------------------------*/
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
 
     $title   = trim($_POST['title']);
     $content = trim($_POST['content']);
     $cat_id  = $_POST['cat_id'];
 
-    /* ----- Image handling ----- */
+   
 
-    $imagePath = $post['image']; // existing path
+    $imagePath = $post['image']; 
 
-    /* Remove image */
+   
     if (!empty($_POST['remove_image'])) {
         if ($imagePath && file_exists($imagePath)) {
             unlink($imagePath);
@@ -67,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
         $imagePath = null;
     }
 
-    /* Upload new image */
+   
     if (!empty($_FILES['image']['name'])) {
 
         $uploadDir = "uploads/";
@@ -83,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
         }
     }
 
-    /* ----- Update DB ----- */
+   
 
     $update = $pdo->prepare("
         UPDATE okgposts
@@ -103,12 +93,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
     exit;
 }
 
-/* ------------------------
-   DELETE POST
--------------------------*/
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
 
-    /* Delete image file if exists */
+   
     if ($post['image'] && file_exists($post['image'])) {
         unlink($post['image']);
     }

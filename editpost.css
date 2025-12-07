@@ -1,15 +1,11 @@
-/* ============================
-      GLOBAL RESET
-============================ */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-/* ============================
-         BODY
-============================ */
+
 body{
     background:linear-gradient(135deg,#fffaf5,#ffeede);
     min-height:100vh;
@@ -19,9 +15,7 @@ body{
     color:#3b2b20;
 }
 
-/* ============================
-           TITLE
-============================ */
+
 h1{
     text-align:center;
     margin-bottom:22px;
@@ -30,9 +24,7 @@ h1{
     letter-spacing:1px;
 }
 
-/* ============================
-        FORM CONTAINER
-============================ */
+
 form{
     max-width:720px;
     margin:0 auto;
@@ -46,17 +38,13 @@ form{
         inset 0 0 0 3px rgba(227,181,143,0.45);
 }
 
-/* ============================
-         LABELS
-============================ */
+
 label{
     font-weight:600;
     color:#6b3d2f;
 }
 
-/* ============================
-           INPUTS
-============================ */
+
 input[type="text"],
 textarea,
 select{
@@ -76,7 +64,7 @@ select{
     transition:.25s ease;
 }
 
-/* Focus glow */
+
 input:focus,
 textarea:focus,
 select:focus{
@@ -85,15 +73,13 @@ select:focus{
     box-shadow:0 0 8px rgba(107,61,47,.18);
 }
 
-/* Textarea sizing */
+
 textarea{
     resize:vertical;
     min-height:140px;
 }
 
-/* ============================
-          DROPDOWN
-============================ */
+
 select{
     cursor:pointer;
     appearance:none;
@@ -112,9 +98,7 @@ select{
     background-repeat:no-repeat;
 }
 
-/* ============================
-           IMAGE
-============================ */
+
 .post-image{
     border-radius:14px;
     margin-top:10px;
@@ -122,25 +106,19 @@ select{
     box-shadow:0 8px 18px rgba(0,0,0,.25);
 }
 
-/* ============================
-        CHECKBOX
-============================ */
+
 label input[type="checkbox"]{
     accent-color:#6b3d2f;
     transform:scale(1.1);
     margin-right:6px;
 }
 
-/* ============================
-          FILE INPUT
-============================ */
+
 input[type="file"]{
     margin-top:8px;
 }
 
-/* ============================
-           BUTTONS
-============================ */
+
 button{
     margin-top:14px;
 
@@ -164,7 +142,7 @@ button{
     transition:.25s;
 }
 
-/* Hover lift */
+
 button:hover{
     transform:translateY(-2px);
     box-shadow:
@@ -172,9 +150,7 @@ button:hover{
         0 0 12px rgba(107,61,47,.35);
 }
 
-/* ============================
-       DELETE BUTTON
-============================ */
+
 button[name="delete"]{
     background:#b42222 !important;
     box-shadow:
@@ -189,9 +165,7 @@ button[name="delete"]:hover{
         0 0 14px rgba(210,47,47,.45);
 }
 
-/* ============================
-           CANCEL LINK
-============================ */
+
 a{
     display:block;
     text-align:center;
@@ -209,9 +183,7 @@ a:hover{
     color:#2b1812;
 }
 
-/* ============================
-          MOBILE
-============================ */
+
 @media(max-width:700px){
 
     form{

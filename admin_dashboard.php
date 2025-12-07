@@ -146,7 +146,6 @@ $msgs = $conn->query("
 <title>Admin Dashboard</title>
 
 <link rel="stylesheet" href="admind.css">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
