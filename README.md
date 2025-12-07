@@ -1,8 +1,14 @@
 # COSC213-Final_Project
-This is a readme file for COSC 213 Final Project
+PRIME-OKG: A community content management system.
+
+# Team Members
+Christy Vattatharakooran Kunjachan
+Ralph Juliano
+Tatsuki Sugawara
+
 
 ## Project - Content Management System
-Kelowna Go-To
+Prime-OKG
 -> Local food sports
 -> Local news and updates;
 -> Hikes and go-to places
@@ -10,21 +16,41 @@ Kelowna Go-To
 This is content management website like reddit, where people post recent events and updates in Kelowna that is accessible to both locals and out-of-towners. This includes the local food spots, raves, hikes and etc. for people to share and enjoy.
 
 # Layout of the website
-- HOME page 
-- POST page
-- Categories page
-    - Local News/Rave
-    - Local Food Spots
-    - Local Hikes and places
+- Home page 
 - Contact Us page
 
+-> User Login -> User Register 
+-> Admin Login
 
- for filtered post that has most reactions or recent post.
+## Features
 
-This is a readme file for COSC 213 Final Projects
+- User registration & secure login  
+- Create / Edit / Delete posts 
+- Posts show author name and creation date  
+- Three fixed categories 
+- Responsive navigation (Home, Contact Us, Login/Register)  
+- Contact form submissions stored in database (admin-only view)  
 
 
-### SQL for creating the required tables for storing POSTS, USERS and CATEGORIES
+## Tech Stack
+•	Frontend: HTML, CSS
+•	Backend: PHP
+•	Database: MySQL
+•	Server: Apache
+
+## PROJECT INSTRUCTIONS 
+- Clone the project to the web host 'XAMPP' C:/xampp/htdocs/COSC-213-Final_Project/
+- Database 'local_blog' created in XAMPP admin and tables (USERS, OKGPOSTS, CATEGORIES, CONTACTS)
+- DB connection establised using db.php
+- Open the following link in the browser - http://localhost/COSC-213-Final_Project/home.php
+
+| Role          | Username   | Password     |
+|---------------|------------|--------------|
+| Admin         | `admin`    | `admin123`   |    
+| Regular User  | `chris`    | `12345`      | 
+
+
+## SQL Schema for creating the required tables for storing POSTS, USERS, CATEGORIES and CONTACTS
 
 CREATE TABLE OKGPOSTS (
 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -59,7 +85,7 @@ INSERT INTO categories (cat_name, log_name) VALUES
 ('Local Foods', 'local_foods');
 
 
-CREATE TABLE contacts (
+CREATE TABLE CONTACTS (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL,
@@ -68,3 +94,6 @@ CREATE TABLE contacts (
     message TEXT NOT NULL,
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
+-----------------------------------------END---------------------------------------------------------
