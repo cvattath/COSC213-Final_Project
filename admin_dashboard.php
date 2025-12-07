@@ -5,7 +5,7 @@ session_start();
    ADMIN SECURITY CHECK
 ======================================================== */
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header("Location: admin-login.php");
+    header("Location: admin_login.php");
     exit;
 }
 
@@ -145,143 +145,8 @@ $msgs = $conn->query("
 <meta charset="UTF-8">
 <title>Admin Dashboard</title>
 
-<link rel="stylesheet" href="style.css">
-
-<style>
-
-/* =====================
-   LAYOUT
-===================== */
-
-body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:#f5f5f5;
-}
-
-.container{
-    max-width:1100px;
-    margin:30px auto;
-    background:#fff;
-    padding:25px;
-    border-radius:10px;
-}
-
-/* =====================
-   STATS
-===================== */
-
-.stats{
-    display:flex;
-    gap:15px;
-}
-
-.stats div{
-    background:#f2f4ff;
-    padding:10px 15px;
-    border-radius:8px;
-}
-
-/* =====================
-   SEARCH
-===================== */
-
-.search-box{
-    margin:20px 0;
-}
-
-.search-box input{
-    width:100%;
-    padding:7px;
-}
-
-/* =====================
-   TABLES
-===================== */
-
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin:25px 0;
-}
-
-th, td{
-    border:1px solid #ccc;
-    padding:10px;
-    text-align:center;
-}
-
-th{
-    background:#eee;
-}
-
-/* =====================
-   BUTTONS
-===================== */
-
-.edit-btn,
-.owner-delete-btn,
-.delete-btn{
-    padding:6px 14px;
-    border-radius:5px;
-    background:#df3a3a;
-    color:#fff;
-    border:none;
-    cursor:pointer;
-    text-decoration:none;
-}
-
-.edit-btn{
-    background:#3575e6;
-}
-
-/* =====================
-   POSTS + CONTACTS
-===================== */
-
-.post,
-.contact-card{
-    border:1px solid #ddd;
-    padding:15px;
-    border-radius:8px;
-    margin-bottom:20px;
-}
-
-.post-image{
-    max-width:100%;
-    margin-top:10px;
-}
-
-/* =====================
-   STATUS MESSAGE
-===================== */
-
-.msg{
-    background:#e7ffe7;
-    border-left:5px solid #42a142;
-    padding:10px;
-    margin:15px 0;
-}
-
-/* CLICKABLE POSTS */
-.clickable{
-    cursor:pointer;
-}
-
-/* COLLAPSIBLE CONTENT */
-.post-content{
-    overflow:hidden;
-    max-height:0;
-    transition:max-height 0.3s ease;
-}
-
-/* EXPANDED STATE */
-.post-content.expanded{
-    max-height:2000px; /* big number so images fit */
-}
-
-
-</style>
-
+<link rel="stylesheet" href="admind.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
@@ -324,7 +189,6 @@ th{
     <th>Name</th>
     <th>Age</th>
     <th>Registered</th>
-    <th>Edit</th>
     <th>Delete</th>
 </tr>
 
@@ -338,11 +202,6 @@ th{
     <td><?= htmlspecialchars($u['age']) ?></td>
     <td><?= htmlspecialchars($u['createdAt']) ?></td>
 
-    <td>
-        <a class="edit-btn" href="admin-edit-user.php?id=<?= $u['id'] ?>">
-            Edit
-        </a>
-    </td>
 
     <td>
         <form method="POST"

@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_post'])) {
 <html>
 <head>
     <title>Create Post</title>
-    <link href="style.css" rel="stylesheet">
+    <link href="userdashboard.css" rel="stylesheet">
 </head>
 <body class="body-dash">
 
