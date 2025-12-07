@@ -190,8 +190,6 @@ body{
 .post-grid{
     display:grid;
     grid-template-columns: 1fr;
-    gap:36px;
-
     max-width: 100%;
     margin:0 auto;
 }
@@ -213,7 +211,7 @@ body{
     box-shadow:0 10px 28px rgba(0,0,0,0.12);
 
     transition:.25s ease;
-    border:3px solid rgba(145, 69, 4, 0.867);
+    border:1px solid rgba(145, 69, 4, 0.867);
 }
 
 .post-card:hover{

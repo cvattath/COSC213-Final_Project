@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_post'])) {
 
 <div class="container">
     <h1>Create New Post</h1>
-    <a href="home.php" class="click-home">go to home</a>
+    <a href="home.php" class="click-home">← go to home</a>
     <?php if ($message) echo "<div class='msg'>$message</div>"; ?>
 
     <form method="post" enctype="multipart/form-data">
